@@ -4,14 +4,16 @@
 Acceptance:
 - [x] Project instructions and product, architecture, database, security, compliance, business, deployment, roadmap, decision, progress, backlog, and resume docs exist.
 - [x] Next.js TypeScript app scaffold and dedicated German/Persian/English locale resources exist; Persian locale wrapper sets RTL.
-- [x] GitHub Actions runs install, high-severity dependency audit, lint, typecheck, unit tests, and production build.
+- [x] GitHub Actions runs install, high-severity dependency audit, lint, typecheck, unit tests, and build.
+- [x] Authentication and tenant-isolation threat model and proposed request flow are documented in `docs/SECURITY_DESIGN_REVIEW.md`.
 - [ ] Commit a package lockfile and verify a repeatable `npm ci` install.
-- [ ] Start the dev server and verify the German default route, language switching, and RTL behavior in a browser.
-- [ ] Review the authentication and tenant isolation design before implementing auth or tenant-sensitive features.
-- [ ] Decide and validate the initial Prisma schema/migration plan.
+- [ ] Start the dev server and verify German default route, language switching, and RTL behavior in a browser.
+- [ ] Founder reviews the proposed authentication/session and tenant-isolation design before implementation.
+- [ ] Decide and validate the initial Prisma schema/migration plan after design review.
+- [ ] Add and run a Playwright browser smoke test.
 - [ ] Vercel preview integration is optional to foundation completion and must use isolated non-production data.
 
-Do not mark complete until remaining required acceptance items are evidenced in PROGRESS.
+Do not mark complete until required acceptance items are evidenced in PROGRESS.
 
 ## Milestone 2 — Shared operations
 Organizations, membership/permissions, employees, clients, sites, shifts, assignments, time entries. Acceptance includes tenant-scoped APIs and cross-tenant denial tests.
