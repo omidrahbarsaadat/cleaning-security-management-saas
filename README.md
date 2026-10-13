@@ -35,7 +35,7 @@ npm run test:e2e
 npm run build
 ```
 
-GitHub Actions run #28 passed the install, audit, lint, typecheck, 7 unit tests, 3 Chromium browser tests, and production build. The browser suite starts the Next.js dev server. These automated checks passed in GitHub Actions; no local shell or browser run has been verified in this environment. See [project progress](docs/PROGRESS.md) for evidence.
+GitHub Actions run #33 passed the install, audit, lint, typecheck, 7 unit tests, 3 Chromium browser tests, and production build. The browser suite starts the Next.js dev server. These automated checks passed in GitHub Actions; no local shell or browser run has been verified in this environment. See [project progress](docs/PROGRESS.md) for evidence.
 
 Read [AGENTS.md](AGENTS.md), [the roadmap](docs/ROADMAP.md), [progress](docs/PROGRESS.md), and [the resume point](docs/RESUME.md) before continuing.
 
