@@ -1,0 +1,15 @@
+{
+  "languageName": "فارسی",
+  "productName": "مدیریت نظافت و امنیت",
+  "eyebrow": "سامانهٔ عملیاتی شرکت‌های خدماتی",
+  "headline": "نظافت و امنیت؛ یکپارچه و منظم.",
+  "description": "پایه‌ای مشترک برای برنامه‌ریزی شیفت‌ها، مدیریت کارکنان و کیفیت خدمات. این سامانه مرحله‌به‌مرحله ساخته می‌شود.",
+  "cleaningModule": "مدیریت نظافت",
+  "cleaningDescription": "سفارش‌ها، چک‌لیست‌ها و گزارش انجام کار.",
+  "securityModule": "مدیریت امنیت",
+  "securityDescription": "برنامهٔ شیفت، گشت‌ها و گزارش رخدادها.",
+  "foundationLabel": "وضعیت پروژه",
+  "foundationStatus": "زیرساخت فنی در حال آماده‌سازی است",
+  "languageLabel": "زبان",
+  "languages": { "de": "Deutsch", "fa": "فارسی", "en": "English" }
+}
