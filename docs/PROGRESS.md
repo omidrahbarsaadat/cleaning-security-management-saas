@@ -8,7 +8,7 @@ Updated: 2026-10-13
 - Product, architecture, database, security, security design review, compliance, business, roadmap, decisions, deployment, progress, backlog, and resume documentation are present.
 - Next.js App Router, TypeScript, Tailwind, German/Persian/English locale resources, regional document tags, Persian RTL, locale-aware formatting, and localized landing routes are present.
 - Vitest: 2 files, 7 tests passed. Playwright: 3 browser tests passed for German default routing, Persian RTL, and English switching.
-- GitHub Actions run [#34](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/actions/runs/38416305629) passed with committed lockfile and immutable action SHA pins: `npm ci`, high-severity audit, lint, typecheck, 7 Vitest tests, Playwright Chromium install, 3 browser tests, and production build. Audit reported 0 vulnerabilities.
+- GitHub Actions run [#36](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/actions/runs/38416530216) passed with committed lockfile and immutable action SHA pins: `npm ci`, high-severity audit, lint, typecheck, 7 Vitest tests, Playwright Chromium install, 3 browser tests, and production build. Audit reported 0 vulnerabilities.
 - `package-lock.json` is committed (lockfile v3; 253 package entries) and CI uses `npm ci`.
 - GitHub Issue #1 was closed with the CI evidence.
 
@@ -29,7 +29,7 @@ Updated: 2026-10-13
 - Authentication/tenant isolation proposal is in [SECURITY_DESIGN_REVIEW.md](SECURITY_DESIGN_REVIEW.md); founder review and provider/RLS decisions remain pending before implementation.
 
 ## Current milestone
-Milestone 1 foundation checks passed on run #34. The milestone remains open until security design review and initial database design validation are complete. Do not implement authentication or tenant-owned functionality until the founder reviews the proposal.
+Milestone 1 foundation checks passed on run #36, including the latest documentation and immutable action pins. The milestone remains open until security design review and initial database design validation are complete. Do not implement authentication or tenant-owned functionality until the founder reviews the proposal.
 
 ## Risks and constraints
 The repository is public by explicit owner choice; keep secrets and personal data out. GitHub API is used for repository edits, so there is no verified local working-tree state.
