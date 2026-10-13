@@ -5,15 +5,15 @@ Acceptance:
 - [x] Project instructions and product, architecture, database, security, compliance, business, deployment, roadmap, decision, progress, backlog, and resume docs exist.
 - [x] Next.js TypeScript scaffold and German/Persian/English locale resources exist; HTML has regional language tags and Persian is RTL.
 - [x] Locale-aware date, time, number, and EUR formatting helpers exist with unit coverage.
-- [x] GitHub Actions runs install, high-severity dependency audit, lint, typecheck, unit tests, Playwright browser tests, and production build.
-- [x] Playwright verifies German root routing, Persian RTL, English language switching, and starts the Next.js development server.
-- [x] Commit a package lockfile and configure CI to use `npm ci`.
+- [x] GitHub Actions runs locked install, high-severity dependency audit, lint, typecheck, unit tests, Playwright browser tests, and production build.
+- [x] Playwright verifies German default routing, Persian RTL, English language switching, and starts the Next.js development server.
+- [x] Commit the package lockfile and use `npm ci` in CI.
 - [x] Authentication and tenant-isolation threat model and proposed request flow are documented in `docs/SECURITY_DESIGN_REVIEW.md`.
 - [ ] Founder reviews the proposed authentication/session and tenant-isolation design before implementation.
 - [ ] Decide and validate the initial Prisma schema/migration plan after design review.
 - [ ] Vercel Preview integration is optional to foundation completion and must use isolated non-production data.
 
-CI run #26 passed the acceptance checks above except founder review and database schema validation. Run #28 is rechecking the committed lockfile. Do not mark the milestone complete until founder review gate status and remaining required work are recorded in PROGRESS.
+CI run #28 passed the implementation acceptance checks above. Security design review and initial database design validation remain before this milestone can close.
 
 ## Milestone 2 — Shared operations
 Organizations, membership/permissions, employees, clients, sites, shifts, assignments, time entries. Acceptance includes tenant-scoped APIs and cross-tenant denial tests.
