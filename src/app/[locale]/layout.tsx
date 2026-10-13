@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getDirection, isLocale } from "@/i18n/config";
+import { getDirection, getLanguageTag, isLocale } from "@/i18n/config";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale} dir={getDirection(locale)}>
+    <html lang={getLanguageTag(locale)} dir={getDirection(locale)}>
       <body className="min-h-screen">{children}</body>
     </html>
   );
