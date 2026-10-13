@@ -1,5 +1,7 @@
 # Security baseline
 
+The proposed authentication and tenant-isolation request flow is documented in [SECURITY_DESIGN_REVIEW.md](SECURITY_DESIGN_REVIEW.md). Founder review is required before implementing authentication or tenant-owned operations.
+
 ## Threats
 Cross-tenant IDOR, privilege escalation, session theft, unsafe uploads, malicious input, accidental disclosure in logs, preview/production data mixing, and over-retention of employee or incident information.
 
