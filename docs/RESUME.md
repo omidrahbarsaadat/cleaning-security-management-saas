@@ -25,7 +25,7 @@ The owner authorized keeping the repository public. Keep secrets and real employ
 2. After review, implement the approved Prisma schema/migrations with composite tenant constraints and fictional seed data.
 3. Implement tenant-scoped authorization and cross-tenant/role denial tests before operational workflows.
 4. Configure Vercel Preview only when integration access is available, with isolated non-production data; production needs explicit approval.
-5. Review PR #5 and configure main branch protection through GitHub settings.
+5. Review and merge PR #5 (branch protection now requires the `checks` CI job).
 
 ## Known constraints
-No Vercel connection exists (no Vercel deployments, statuses, or webhooks on GitHub; local Vercel CLI not logged in). `main` has no branch protection or rulesets. No database service. Local shell, npm, Playwright, authenticated `gh` CLI, and GitHub Actions work. Never invent local test results.
+No Vercel connection exists (no Vercel deployments, statuses, or webhooks on GitHub; local Vercel CLI not logged in). `main` is protected (set 2026-10-13 at owner request, verified via GitHub API): pull request required (0 approvals, stale reviews dismissed), required up-to-date `checks` status from GitHub Actions, conversation resolution required, force pushes and deletion blocked; admins can bypass. No database service. Local shell, npm, Playwright, authenticated `gh` CLI, and GitHub Actions work. Never invent local test results.

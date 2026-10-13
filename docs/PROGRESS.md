@@ -26,7 +26,7 @@ Updated: 2026-10-13
 - Local verification on 2026-10-13 (Windows 10, Node 24.18.0, npm 11.16.0): `npm ci`, audit (0 vulnerabilities), lint, typecheck, 7 Vitest tests, 3 Playwright Chromium tests, and production build all passed.
 - No Prisma schema/migration, PostgreSQL runtime setup, authentication, authorization, tenant-aware business functionality, or cross-tenant denial tests.
 - No Vercel integration, Preview deployment, database service, or production deployment. Checked 2026-10-13: the repository has no GitHub deployments, commit statuses, or webhooks from Vercel, and the local Vercel CLI (58.0.0) is not logged in.
-- `main` has no branch protection and no rulesets (GitHub API, 2026-10-13). Not changed; requires owner approval.
+- `main` is protected (set 2026-10-13 at owner request, verified via GitHub API): pull request required (0 approvals, stale reviews dismissed), required up-to-date `checks` status from GitHub Actions, conversation resolution required, force pushes and deletion blocked; admins can bypass.
 - Authentication/tenant isolation proposal is in [SECURITY_DESIGN_REVIEW.md](SECURITY_DESIGN_REVIEW.md); founder review and provider/RLS decisions remain pending before implementation.
 
 ## Current milestone
