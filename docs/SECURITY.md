@@ -16,6 +16,7 @@ Cross-tenant IDOR, privilege escalation, session theft, unsafe uploads, maliciou
 - No secrets in source; separate development, preview, and production credentials.
 - Cross-tenant denial and role-boundary tests.
 - Backup, restore, incident response, retention, and deletion procedures.
+- GitHub Actions uses a read-only contents token and immutable action commit pins.
 
 ## RLS
 Evaluate PostgreSQL Row-Level Security as defense in depth after designing transaction-local tenant context and privileged roles. Never enable a simplistic policy that can be bypassed through connection-pool state leakage.
