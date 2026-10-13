@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDirection, isLocale } from "@/i18n/config";
+import "../globals.css";
+
+export const metadata: Metadata = {
+  title: "Cleaning & Security Management",
+  description: "Operations platform for cleaning and security service companies.",
+};
 
 export function generateStaticParams() {
   return ["de", "fa", "en"].map((locale) => ({ locale }));
@@ -16,8 +23,8 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <div lang={locale} dir={getDirection(locale)} className="min-h-screen">
-      {children}
-    </div>
+    <html lang={locale} dir={getDirection(locale)}>
+      <body className="min-h-screen">{children}</body>
+    </html>
   );
 }
