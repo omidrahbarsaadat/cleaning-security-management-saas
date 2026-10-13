@@ -4,19 +4,18 @@ A multi-tenant operations platform for cleaning and security service companies i
 
 ## Current status
 
-The foundation scaffold and project documentation are on the feature branch `foundation/initial-project-docs`. This is not ready for operational use: authentication, tenant-scoped data access, PostgreSQL/Prisma integration, and production deployment are not implemented. Do not enter real employee or customer data.
+The foundation scaffold and project documentation are on the feature branch [foundation/initial-project-docs](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/tree/foundation/initial-project-docs), in draft [PR #5](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/pull/5). Authentication, tenant-scoped data access, PostgreSQL/Prisma integration, and production deployment are not implemented. Do not enter real employee or customer data.
 
 ## Stack
 
 - Next.js App Router, React, TypeScript, Tailwind CSS
-- PostgreSQL and Prisma planned; database schema and tenant constraints are documented, but no migration exists yet
-- Zod is planned for request validation
-- Vitest unit tests; Playwright is planned for end-to-end tests
-- GitHub Actions CI workflow is configured but has not yet been run
+- PostgreSQL and Prisma planned; schema and tenant constraints are documented, but no migration exists yet
+- Zod planned for request validation
+- ESLint, Vitest, and GitHub Actions CI; Playwright is planned for later end-to-end coverage
 
 ## Development
 
-Use Node.js 22.12 or newer. Run `npm install`, then `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`. These commands have not yet been verified in a local environment, and there is no committed lockfile yet.
+Use Node.js 22.12 or newer. Run `npm install`, then `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`. These checks passed in GitHub Actions on 2026-10-13. They have not been run in the founder's local environment, and no lockfile is committed yet.
 
 Read [AGENTS.md](AGENTS.md), [the roadmap](docs/ROADMAP.md), [progress](docs/PROGRESS.md), and [the resume point](docs/RESUME.md) before continuing.
 
