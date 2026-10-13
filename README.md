@@ -11,13 +11,31 @@ The foundation scaffold and project documentation are on the feature branch [fou
 - Next.js App Router, React, TypeScript, Tailwind CSS
 - PostgreSQL and Prisma planned; schema and tenant constraints are documented, but no migration exists yet
 - Zod planned for request validation
-- ESLint, Vitest, and GitHub Actions CI; Playwright browser coverage remains planned
+- ESLint, Vitest, Playwright, and GitHub Actions CI
 
 ## Development
 
-Use Node.js 22.12 or newer. Run `npm install`, then `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`. GitHub Actions validates install, audit, lint, typecheck, tests, and build. A lockfile is generated in CI and retained as a short-lived artifact while a lockfile is not committed; install locally with `npm install` until the lockfile bootstrap is resolved.
+Use Node.js 22.12 or newer.
 
-No local dependency installation, application startup, or browser test has been verified in this execution environment. See [project progress](docs/PROGRESS.md) for current CI evidence.
+```sh
+npm ci
+npm run dev
+```
+
+Open `http://localhost:3000`; the root route redirects to German. Available locales are `/de`, `/fa` (RTL), and `/en`.
+
+Run checks:
+
+```sh
+npm run lint
+npm run typecheck
+npm test
+npx playwright install chromium
+npm run test:e2e
+npm run build
+```
+
+GitHub Actions run #28 passed the install, audit, lint, typecheck, 7 unit tests, 3 Chromium browser tests, and production build. The browser suite starts the Next.js dev server. These automated checks passed in GitHub Actions; no local shell or browser run has been verified in this environment. See [project progress](docs/PROGRESS.md) for evidence.
 
 Read [AGENTS.md](AGENTS.md), [the roadmap](docs/ROADMAP.md), [progress](docs/PROGRESS.md), and [the resume point](docs/RESUME.md) before continuing.
 
