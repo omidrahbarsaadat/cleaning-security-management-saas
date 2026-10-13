@@ -1,9 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { getDirection, isLocale, locales } from "./config";
+import { getDirection, getLanguageTag, isLocale, locales } from "./config";
 
 describe("localization configuration", () => {
   it("supports German, Persian, and English", () => {
     expect(locales).toEqual(["de", "fa", "en"]);
+  });
+
+  it("uses the requested regional language tags", () => {
+    expect(getLanguageTag("de")).toBe("de-DE");
+    expect(getLanguageTag("fa")).toBe("fa-IR");
+    expect(getLanguageTag("en")).toBe("en");
   });
 
   it("marks Persian as RTL and German and English as LTR", () => {
