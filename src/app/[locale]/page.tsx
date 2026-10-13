@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/i18n/dictionaries";
-import { isLocale } from "@/i18n/config";
+import { getLanguageTag, isLocale } from "@/i18n/config";
 
 export default async function LocalizedHomePage({
   params,
@@ -22,7 +22,7 @@ export default async function LocalizedHomePage({
             <Link
               key={language}
               href={`/${language}`}
-              lang={language}
+              lang={getLanguageTag(language)}
               aria-current={locale === language ? "page" : undefined}
               className="rounded-full px-3 py-1.5 text-slate-700 hover:bg-white aria-[current=page]:bg-white aria-[current=page]:font-semibold"
             >
