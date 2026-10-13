@@ -3,9 +3,9 @@
 GitHub Issues are the execution tracker. Keep this list synchronized with open issues.
 
 ## P0 — Foundation
-1. Scaffold Next.js App Router + TypeScript, lint, typecheck, unit and browser test scripts. (Implemented; CI run #26 passed.)
+1. Scaffold Next.js App Router + TypeScript, lint, typecheck, unit and browser test scripts. (Implemented; CI run #28 passed.)
 2. Add German-default localization, `de-DE`/`fa-IR` language tags, Persian RTL, and locale-aware formatting. (Implemented; 7 unit and 3 browser tests passed.)
-3. Commit the npm lockfile and verify clean `npm ci`. (Implemented; [#1](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/1) remains open until run #28 is verified.)
+3. Commit the npm lockfile and verify clean `npm ci`. (Completed in [Issue #1](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/1).)
 4. Review the foundation PR and repository visibility/branch-protection settings.
 5. Configure Vercel Preview with isolated non-production data when authorized provider access is available. ([#4](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/4).)
 
