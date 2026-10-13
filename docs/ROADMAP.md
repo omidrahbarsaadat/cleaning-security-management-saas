@@ -13,7 +13,7 @@ Acceptance:
 - [ ] Decide and validate the initial Prisma schema/migration plan after design review.
 - [ ] Vercel Preview integration is optional to foundation completion and must use isolated non-production data.
 
-CI run #34 passed the implementation acceptance checks with immutable GitHub Action SHAs. Security design review and initial database design validation remain before this milestone can close.
+CI run #36 passed the implementation acceptance checks with immutable GitHub Action SHAs. Security design review and initial database design validation remain before this milestone can close.
 
 ## Milestone 2 — Shared operations
 Organizations, membership/permissions, employees, clients, sites, shifts, assignments, time entries. Acceptance includes tenant-scoped APIs and cross-tenant denial tests.
