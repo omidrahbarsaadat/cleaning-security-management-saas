@@ -1,6 +1,6 @@
 # Authentication and tenant isolation design review
 
-Status: proposed for founder review; no authentication or tenant-owned business operation is implemented.
+Status: approved 2026-10-15 (see ADR-006 to ADR-009 in DECISIONS.md). Implementation proceeds in small reviewed increments.
 
 ## Scope and security goals
 
@@ -61,13 +61,13 @@ Application-level tenant scoping and composite relational constraints are requir
 - Audit records are tenant-scoped and cannot be modified by ordinary users.
 - Preview credentials and data are isolated from production.
 
-## Decisions required before implementation
+## Decisions (resolved 2026-10-15)
 
-1. Review and approve or amend this request flow and permission model.
-2. Select an authentication/session approach after comparing maintenance, account recovery, cost, and data-processing terms. No provider has been selected or connected.
-3. Decide whether the MVP starts without RLS and adds it after integration tests, or implements RLS as part of the first database migration after transaction semantics are proven.
-4. Confirm initial role templates and whether organization selection should use a route segment.
+1. Request flow and permission model: approved as written (ADR-006).
+2. Authentication: self-hosted Better Auth with sessions in our EU PostgreSQL; membership and permissions stay in our own tables (ADR-007).
+3. RLS: added after application scoping is integration-tested (ADR-008).
+4. Roles: owner, administrator, operations manager, supervisor, employee; organization selected by route segment `/[locale]/org/[orgSlug]/...` and verified on the server (ADR-009).
 
 ## Current implementation boundary
 
-This is a design proposal only. No authentication, session, tenant resolver, RBAC service, Prisma schema, operational endpoint, or cross-tenant test exists yet. Implement these only after design review and provider/authorization decisions.
+Implementation proceeds in small pull requests: (1) Prisma schema, composite tenant constraints, permission catalog, TenantContext resolver, and cross-tenant tests against real PostgreSQL; (2) Better Auth integration; (3) tenant-scoped operational modules. No step is complete until its verification matrix items have automated tests.
