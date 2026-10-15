@@ -12,7 +12,7 @@ GitHub Issues are the execution tracker. Keep this list synchronized with open i
 ## P1 — Security design and database
 6. Security design review and decisions. (Approved 2026-10-15; ADR-006 to ADR-010. [#2](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/2) stays open until the verification matrix is fully tested.)
 7. Prisma schema, composite tenant constraints, migration, fictional seed, TenantContext, and cross-tenant integration tests. (Implemented on `feature/tenant-data-foundation`; [#3](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/3).)
-8. Integrate Better Auth (ADR-007): sessions in our PostgreSQL, email verification, adapter yielding the internal user ID; protected `/[locale]/org/[orgSlug]` routes using `resolveTenantContext`.
+8. Integrate Better Auth (ADR-007). (Implemented on `feature/authentication`.) Follow-ups: EU email delivery provider, password reset, session retention policy for IP/user-agent data.
 8a. Add PostgreSQL RLS as defense in depth after application scoping is proven (ADR-008).
 
 ## P2 — Operations

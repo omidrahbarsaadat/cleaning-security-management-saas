@@ -21,7 +21,7 @@ let f: Fixture;
 
 async function reset() {
   await db.$executeRawUnsafe(
-    'TRUNCATE "AuditLog", "ServiceSite", "Client", "Employee", "MembershipRole", "Role", "OrganizationMembership", "User", "Organization" CASCADE',
+    'TRUNCATE "AuditLog", "ServiceSite", "Client", "Employee", "MembershipRole", "Role", "OrganizationMembership", "Session", "Account", "Verification", "User", "Organization" CASCADE',
   );
 }
 

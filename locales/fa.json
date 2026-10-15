@@ -11,5 +11,32 @@
   "foundationLabel": "وضعیت پروژه",
   "foundationStatus": "زیرساخت فنی در حال آماده‌سازی است",
   "languageLabel": "زبان",
-  "languages": { "de": "Deutsch", "fa": "فارسی", "en": "English" }
+  "languages": {
+    "de": "Deutsch",
+    "fa": "فارسی",
+    "en": "English"
+  },
+  "auth": {
+    "signInTitle": "ورود",
+    "signUpTitle": "ایجاد حساب",
+    "name": "نام",
+    "email": "ایمیل",
+    "password": "رمز عبور",
+    "passwordHint": "حداقل ۱۲ نویسه",
+    "signIn": "ورود",
+    "signUp": "ثبت‌نام",
+    "toSignUp": "حساب ندارید؟ ثبت‌نام کنید",
+    "toSignIn": "قبلاً ثبت‌نام کرده‌اید؟ وارد شوید",
+    "checkEmail": "لطفاً ایمیل خود را با پیوند ارسال‌شده تأیید کنید.",
+    "notVerified": "لطفاً ابتدا ایمیل خود را تأیید کنید.",
+    "invalid": "ایمیل یا رمز عبور نامعتبر است.",
+    "genericError": "انجام نشد. لطفاً دوباره تلاش کنید.",
+    "signOut": "خروج"
+  },
+  "org": {
+    "noAccess": "شما به این سازمان دسترسی ندارید.",
+    "sites": "محل‌های خدمت",
+    "noSites": "هنوز محل خدمتی ثبت نشده است.",
+    "noSitePermission": "اجازهٔ مشاهدهٔ محل‌های خدمت را ندارید."
+  }
 }

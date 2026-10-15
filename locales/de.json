@@ -11,5 +11,32 @@
   "foundationLabel": "Projektstatus",
   "foundationStatus": "Technisches Fundament in Arbeit",
   "languageLabel": "Sprache",
-  "languages": { "de": "Deutsch", "fa": "فارسی", "en": "English" }
+  "languages": {
+    "de": "Deutsch",
+    "fa": "فارسی",
+    "en": "English"
+  },
+  "auth": {
+    "signInTitle": "Anmelden",
+    "signUpTitle": "Konto erstellen",
+    "name": "Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "passwordHint": "Mindestens 12 Zeichen",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "toSignUp": "Noch kein Konto? Registrieren",
+    "toSignIn": "Bereits registriert? Anmelden",
+    "checkEmail": "Bitte bestätigen Sie Ihre E-Mail-Adresse über den zugesandten Link.",
+    "notVerified": "Bitte bestätigen Sie zuerst Ihre E-Mail-Adresse.",
+    "invalid": "E-Mail oder Passwort ist ungültig.",
+    "genericError": "Das hat nicht funktioniert. Bitte versuchen Sie es erneut.",
+    "signOut": "Abmelden"
+  },
+  "org": {
+    "noAccess": "Sie haben keinen Zugriff auf diese Organisation.",
+    "sites": "Einsatzorte",
+    "noSites": "Noch keine Einsatzorte vorhanden.",
+    "noSitePermission": "Keine Berechtigung, Einsatzorte anzuzeigen."
+  }
 }
