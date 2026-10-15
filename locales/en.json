@@ -1,0 +1,15 @@
+{
+  "languageName": "English",
+  "productName": "Cleaning & Security Management",
+  "eyebrow": "Operations platform for service providers",
+  "headline": "Cleaning and security, organized together.",
+  "description": "A shared foundation for shift planning, workforce operations, and service quality. The platform is being built in practical steps.",
+  "cleaningModule": "Cleaning management",
+  "cleaningDescription": "Jobs, checklists, and service records.",
+  "securityModule": "Security management",
+  "securityDescription": "Shift planning, patrols, and incident reports.",
+  "foundationLabel": "Project status",
+  "foundationStatus": "Technical foundation in progress",
+  "languageLabel": "Language",
+  "languages": { "de": "Deutsch", "fa": "فارسی", "en": "English" }
+}

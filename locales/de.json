@@ -1,0 +1,15 @@
+{
+  "languageName": "Deutsch",
+  "productName": "Cleaning & Security Management",
+  "eyebrow": "Betriebsplattform für Dienstleister",
+  "headline": "Reinigung und Sicherheit. Gemeinsam organisiert.",
+  "description": "Eine gemeinsame Arbeitsbasis für Einsatzplanung, Mitarbeitende und Servicequalität. Das Fundament entsteht Schritt für Schritt.",
+  "cleaningModule": "Reinigungsmanagement",
+  "cleaningDescription": "Aufträge, Checklisten und Leistungsnachweise.",
+  "securityModule": "Sicherheitsmanagement",
+  "securityDescription": "Dienstplanung, Kontrollgänge und Vorfallberichte.",
+  "foundationLabel": "Projektstatus",
+  "foundationStatus": "Technisches Fundament in Arbeit",
+  "languageLabel": "Sprache",
+  "languages": { "de": "Deutsch", "fa": "فارسی", "en": "English" }
+}
