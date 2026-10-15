@@ -1,0 +1,196 @@
+// Tenant isolation rules (see docs/SECURITY_DESIGN_REVIEW.md, ADR-002):
+// - Every tenant-owned table carries organizationId.
+// - Tenant-owned parents expose @@unique([organizationId, id]).
+// - Children reference parents through composite foreign keys that include
+//   organizationId, so the database rejects cross-tenant relationships.
+// - Deletes are restricted; operational history is archived via status.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum OrganizationStatus {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum MembershipStatus {
+  INVITED
+  ACTIVE
+  REVOKED
+}
+
+enum EmploymentStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum RecordStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+model Organization {
+  id        String             @id @default(uuid()) @db.Uuid
+  slug      String             @unique
+  name      String
+  locale    String             @default("de-DE")
+  timezone  String             @default("Europe/Berlin")
+  status    OrganizationStatus @default(ACTIVE)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  memberships     OrganizationMembership[]
+  roles           Role[]
+  membershipRoles MembershipRole[]
+  employees       Employee[]
+  clients         Client[]
+  serviceSites    ServiceSite[]
+  auditLogs       AuditLog[]
+}
+
+// Platform identity. Field names follow the Better Auth core user model
+// (ADR-007) so the auth integration can use this table directly.
+model User {
+  id              String     @id @default(uuid()) @db.Uuid
+  name            String
+  email           String     @unique
+  emailVerified   Boolean    @default(false)
+  image           String?
+  preferredLocale String     @default("de-DE")
+  status          UserStatus @default(ACTIVE)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  memberships OrganizationMembership[]
+  employees   Employee[]
+}
+
+model OrganizationMembership {
+  id             String           @id @default(uuid()) @db.Uuid
+  organizationId String           @db.Uuid
+  userId         String           @db.Uuid
+  status         MembershipStatus @default(INVITED)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  organization Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  user         User             @relation(fields: [userId], references: [id], onDelete: Restrict)
+  roles        MembershipRole[]
+
+  @@unique([organizationId, userId])
+  @@unique([organizationId, id])
+  @@index([userId])
+}
+
+// Roles are editable permission bundles per organization. Code checks
+// permissions, never role keys (ADR-009).
+model Role {
+  id             String   @id @default(uuid()) @db.Uuid
+  organizationId String   @db.Uuid
+  key            String
+  name           String
+  permissions    String[]
+  isTemplate     Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  memberships  MembershipRole[]
+
+  @@unique([organizationId, key])
+  @@unique([organizationId, id])
+}
+
+model MembershipRole {
+  organizationId String   @db.Uuid
+  membershipId   String   @db.Uuid
+  roleId         String   @db.Uuid
+  createdAt      DateTime @default(now())
+
+  organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  membership   OrganizationMembership @relation(fields: [organizationId, membershipId], references: [organizationId, id], onDelete: Cascade)
+  role         Role                   @relation(fields: [organizationId, roleId], references: [organizationId, id], onDelete: Restrict)
+
+  @@id([membershipId, roleId])
+  @@index([organizationId, roleId])
+}
+
+model Employee {
+  id             String           @id @default(uuid()) @db.Uuid
+  organizationId String           @db.Uuid
+  userId         String?          @db.Uuid
+  displayName    String
+  status         EmploymentStatus @default(ACTIVE)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  user         User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([organizationId, id])
+  @@unique([organizationId, userId])
+  @@index([organizationId, status])
+}
+
+model Client {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  name           String
+  status         RecordStatus @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  organization Organization  @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  sites        ServiceSite[]
+
+  @@unique([organizationId, id])
+  @@index([organizationId, status])
+}
+
+model ServiceSite {
+  id             String       @id @default(uuid()) @db.Uuid
+  organizationId String       @db.Uuid
+  clientId       String       @db.Uuid
+  name           String
+  addressLine    String?
+  postalCode     String?
+  city           String?
+  status         RecordStatus @default(ACTIVE)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  client       Client       @relation(fields: [organizationId, clientId], references: [organizationId, id], onDelete: Restrict)
+
+  @@unique([organizationId, id])
+  @@index([organizationId, clientId])
+}
+
+// Append-only for ordinary users; metadata must stay minimal (no secrets,
+// no unnecessary personal data).
+model AuditLog {
+  id             String   @id @default(uuid()) @db.Uuid
+  organizationId String   @db.Uuid
+  actorUserId    String?  @db.Uuid
+  action         String
+  subjectType    String
+  subjectId      String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+
+  @@index([organizationId, createdAt])
+}

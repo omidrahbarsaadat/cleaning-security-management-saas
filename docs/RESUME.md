@@ -1,6 +1,6 @@
 # Resume point
 
-Last updated: 2026-10-13
+Last updated: 2026-10-15
 
 ## Repository
 GitHub: https://github.com/omidrahbarsaadat/cleaning-security-management-saas
@@ -20,12 +20,14 @@ The authentication and tenant isolation proposal is in `docs/SECURITY_DESIGN_REV
 
 The owner authorized keeping the repository public. Keep secrets and real employee/customer data out of Git.
 
+## Tenant data foundation
+Security design approved 2026-10-15 (ADR-006 to ADR-010). Branch `feature/tenant-data-foundation` (stacked on the foundation branch) adds the Prisma schema/migration, composite tenant FKs, TenantContext resolver, permission catalog, a reference tenant-scoped service, fictional seed, and PostgreSQL integration tests; CI runs them against a service container.
+
 ## Immediate next steps
-1. Obtain founder review/approval of `docs/SECURITY_DESIGN_REVIEW.md` and auth/session, roles, and RLS decisions (Issue #2).
-2. After review, implement the approved Prisma schema/migrations with composite tenant constraints and fictional seed data.
-3. Implement tenant-scoped authorization and cross-tenant/role denial tests before operational workflows.
+1. Merge PR #5, then the tenant data foundation PR (owner approval required for merges).
+2. Integrate Better Auth (ADR-007) and protect `/[locale]/org/[orgSlug]` routes with `resolveTenantContext`.
+3. Organization onboarding and membership/role management; then employees, clients, sites, shifts, assignments, time entries.
 4. Configure Vercel Preview only when integration access is available, with isolated non-production data; production needs explicit approval.
-5. Review and merge PR #5 (branch protection now requires the `checks` CI job).
 
 ## Known constraints
-No Vercel connection exists (no Vercel deployments, statuses, or webhooks on GitHub; local Vercel CLI not logged in). `main` is protected (set 2026-10-13 at owner request, verified via GitHub API): pull request required (0 approvals, stale reviews dismissed), required up-to-date `checks` status from GitHub Actions, conversation resolution required, force pushes and deletion blocked; admins can bypass. No database service. Local shell, npm, Playwright, authenticated `gh` CLI, and GitHub Actions work. Never invent local test results.
+Local PostgreSQL: `npm run db:up` (Docker Desktop must be running). No Vercel connection exists (no Vercel deployments, statuses, or webhooks on GitHub; local Vercel CLI not logged in). `main` is protected (set 2026-10-13 at owner request, verified via GitHub API): pull request required (0 approvals, stale reviews dismissed), required up-to-date `checks` status from GitHub Actions, conversation resolution required, force pushes and deletion blocked; admins can bypass. No database service. Local shell, npm, Playwright, authenticated `gh` CLI, and GitHub Actions work. Never invent local test results.

@@ -1,6 +1,14 @@
 # Project progress
 
-Updated: 2026-10-13
+Updated: 2026-10-15
+
+## Tenant data foundation (branch `feature/tenant-data-foundation`)
+- Security design approved by founder delegation; decisions recorded as ADR-006 to ADR-010 and on Issue #2.
+- Prisma 7.10.0 schema and initial migration: Organization, User (Better Auth-compatible fields), OrganizationMembership, Role, MembershipRole, Employee, Client, ServiceSite, AuditLog. Tenant-owned parents have `(organizationId, id)` unique keys; children use composite foreign keys, so cross-tenant links fail in PostgreSQL (verified: Prisma error P2003).
+- Server modules: permission catalog and role templates, `resolveTenantContext` (anonymous, unknown organization, missing/revoked/invited membership, suspended organization, disabled user all denied), `requirePermission`, and a reference tenant-scoped ServiceSite service with zod validation and audit events.
+- Verified locally 2026-10-15 against PostgreSQL 17 (Docker): 22 unit tests, 11 integration tests (cross-tenant FK rejection, IDOR denial, multi-organization scoping, role boundaries, audit), 3 Playwright tests, lint, typecheck, build, audit 0 vulnerabilities, migration drift check, idempotent fictional seed.
+- `deepmerge-ts` and `mysql2` (transitive via the Prisma CLI) are pinned to patched versions through npm `overrides` to clear high-severity advisories.
+- Integration tests refuse any database except a local `*_test` database because they reset data.
 
 ## Verified
 - Repository: [omidrahbarsaadat/cleaning-security-management-saas](https://github.com/omidrahbarsaadat/cleaning-security-management-saas). Default branch is `main`; GitHub reports the repository as public. The owner explicitly authorized continuing while public.

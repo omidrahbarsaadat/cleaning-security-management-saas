@@ -4,13 +4,13 @@ A multi-tenant operations platform for cleaning and security service companies i
 
 ## Current status
 
-The foundation scaffold and project documentation are on the feature branch [foundation/initial-project-docs](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/tree/foundation/initial-project-docs), in draft [PR #5](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/pull/5). Authentication, tenant-scoped data access, PostgreSQL/Prisma integration, and deployment are not implemented. Do not enter real employee or customer data.
+The foundation scaffold is in [PR #5](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/pull/5). The tenant data foundation (Prisma schema, composite tenant constraints, permission catalog, TenantContext resolver, and cross-tenant tests against PostgreSQL) follows on `feature/tenant-data-foundation`. Authentication (Better Auth, ADR-007), operational modules, and deployment are not implemented yet. Do not enter real employee or customer data.
 
 ## Stack
 
 - Next.js App Router, React, TypeScript, Tailwind CSS
-- PostgreSQL and Prisma planned; schema and tenant constraints are documented, but no migration exists yet
-- Zod planned for request validation
+- PostgreSQL 17 with Prisma 7 (`@prisma/adapter-pg`); composite tenant foreign keys
+- Zod for input validation
 - ESLint, Vitest, Playwright, and GitHub Actions CI
 
 ## Development
@@ -24,6 +24,15 @@ npm run dev
 
 Open `http://localhost:3000`; the root route redirects to German. Available locales are `/de`, `/fa` (RTL), and `/en`.
 
+Local database (Docker, fictional credentials):
+
+```sh
+cp .env.example .env
+npm run db:up
+npm run db:migrate
+npm run db:seed
+```
+
 Run checks:
 
 ```sh
@@ -35,10 +44,18 @@ npm run test:e2e
 npm run build
 ```
 
-GitHub Actions run #33 passed the install, audit, lint, typecheck, 7 unit tests, 3 Chromium browser tests, and production build. The browser suite starts the Next.js dev server. These automated checks passed in GitHub Actions; no local shell or browser run has been verified in this environment. See [project progress](docs/PROGRESS.md) for evidence.
+Integration tests reset all tables, so they only run against a local database whose name ends in `_test`:
+
+```sh
+docker compose exec postgres createdb -U app cleaning_security_test
+DATABASE_URL="postgresql://app:app@localhost:5432/cleaning_security_test?schema=public" npx prisma migrate deploy
+DATABASE_URL="postgresql://app:app@localhost:5432/cleaning_security_test?schema=public" npm run test:integration
+```
+
+CI runs all of the above against a PostgreSQL service container, plus a migration drift check. See [project progress](docs/PROGRESS.md) for evidence.
 
 Read [AGENTS.md](AGENTS.md), [the roadmap](docs/ROADMAP.md), [progress](docs/PROGRESS.md), and [the resume point](docs/RESUME.md) before continuing.
 
 ## Security
 
-Authentication and authorization are intentionally not implemented until the provider and tenant-boundary design has been reviewed. Read [the security design review](docs/SECURITY_DESIGN_REVIEW.md). Never trust an organization ID from the browser. Do not use production personal data in development or preview environments. No secrets belong in Git.
+The tenant-boundary design is approved (ADR-006 to ADR-009). Server code resolves a TenantContext from the authenticated user and the route's organization slug, then scopes every query to that organization. Read [the security design review](docs/SECURITY_DESIGN_REVIEW.md). Never trust an organization ID from the browser. Do not use production personal data in development or preview environments. No secrets belong in Git.
