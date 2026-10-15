@@ -6,16 +6,17 @@ GitHub Issues are the execution tracker. Keep this list synchronized with open i
 1. Scaffold Next.js App Router + TypeScript, lint, typecheck, unit and browser test scripts. (Implemented; CI run #33 passed.)
 2. Add German-default localization, `de-DE`/`fa-IR` language tags, Persian RTL, and locale-aware formatting. (Implemented; 7 unit and 3 browser tests passed.)
 3. Commit the npm lockfile and verify clean `npm ci`. (Completed in [Issue #1](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/1).)
-4. Review the foundation PR and repository visibility/branch-protection settings.
+4. Review and merge the foundation PR. (`main` branch protection configured 2026-10-13.)
 5. Configure Vercel Preview with isolated non-production data when authorized provider access is available. ([#4](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/4).)
 
 ## P1 — Security design and database
-6. Review proposed authentication and tenant isolation in `docs/SECURITY_DESIGN_REVIEW.md`. ([#2](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/2).)
-7. Select identity/session approach and decide permission templates, organization selection, and RLS timing.
-8. Validate initial Prisma schema, constraints, migrations, and fictional local seed data. ([#3](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/3).)
+6. Security design review and decisions. (Approved 2026-10-15; ADR-006 to ADR-010. [#2](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/2) stays open until the verification matrix is fully tested.)
+7. Prisma schema, composite tenant constraints, migration, fictional seed, TenantContext, and cross-tenant integration tests. (Implemented on `feature/tenant-data-foundation`; [#3](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/issues/3).)
+8. Integrate Better Auth (ADR-007): sessions in our PostgreSQL, email verification, adapter yielding the internal user ID; protected `/[locale]/org/[orgSlug]` routes using `resolveTenantContext`.
+8a. Add PostgreSQL RLS as defense in depth after application scoping is proven (ADR-008).
 
 ## P2 — Operations
-9. Implement organization/membership/permissions only after security design review.
+9. Organization onboarding (create organization, copy role templates, invite members) and membership/role management UI.
 10. Add employee, client, site, shift, assignment, and time-entry workflows with server-side tenant scopes.
 11. Add cross-tenant denial and role-boundary integration tests before operational release.
 
