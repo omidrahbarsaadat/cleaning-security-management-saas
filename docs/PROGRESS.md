@@ -2,6 +2,14 @@
 
 Updated: 2026-10-15
 
+## Authentication (branch `feature/authentication`, stacked on the tenant data foundation)
+- Better Auth 1.7.9 (self-hosted, ADR-007): email and password, mandatory email verification, minimum 12-character passwords, rate limiting, UUID IDs, sessions/accounts/verification tables in our PostgreSQL (migration `auth_tables`).
+- Pages: `/[locale]/sign-in` (sign-in and sign-up, German/Persian/English) and protected `/[locale]/org/[orgSlug]`, which redirects anonymous users and authorizes through `resolveTenantContext`.
+- `safeNextPath` restricts post-login redirects to localized same-origin paths (open-redirect protection).
+- Verification email is only logged in development; production refuses to send until an email provider is chosen.
+- Verified locally 2026-10-15: 34 unit tests, 17 integration tests (password hashing, unverified sign-in denied, wrong password denied, session issue/revoke, authentication grants no organization access), 6 Playwright tests (anonymous redirect, sign-up then unverified sign-in blocked, external redirect ignored), lint, typecheck, build without env vars, audit 0 vulnerabilities.
+- Prisma 7 note: `migrate dev` no longer runs `generate`; run `npm run db:generate` after schema changes. Prisma blocks destructive commands such as `migrate reset` when invoked by an AI agent unless the owner consents.
+
 ## Tenant data foundation (branch `feature/tenant-data-foundation`)
 - Security design approved by founder delegation; decisions recorded as ADR-006 to ADR-010 and on Issue #2.
 - Prisma 7.10.0 schema and initial migration: Organization, User (Better Auth-compatible fields), OrganizationMembership, Role, MembershipRole, Employee, Client, ServiceSite, AuditLog. Tenant-owned parents have `(organizationId, id)` unique keys; children use composite foreign keys, so cross-tenant links fail in PostgreSQL (verified: Prisma error P2003).

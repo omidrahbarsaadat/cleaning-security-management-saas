@@ -3,6 +3,12 @@
 ## Current status
 No Vercel project, PostgreSQL service, environment variables, or deployment has been configured or verified.
 
+## Required environment variables
+- `DATABASE_URL`: PostgreSQL connection string (separate per environment).
+- `BETTER_AUTH_SECRET`: at least 32 random characters; the app refuses to start in production without it.
+- `BETTER_AUTH_URL`: the public base URL of the deployment.
+- An email delivery provider must be selected and wired into `sendVerificationEmail` before production; until then production sign-up deliberately fails instead of dropping verification mail.
+
 ## Intended workflow
 Feature branch → CI checks → pull request → Vercel preview using isolated non-production data → human review → merge to main → controlled production migration/deployment after explicit release approval.
 

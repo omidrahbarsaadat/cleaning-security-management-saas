@@ -23,9 +23,12 @@ The owner authorized keeping the repository public. Keep secrets and real employ
 ## Tenant data foundation
 Security design approved 2026-10-15 (ADR-006 to ADR-010). Branch `feature/tenant-data-foundation` (stacked on the foundation branch) adds the Prisma schema/migration, composite tenant FKs, TenantContext resolver, permission catalog, a reference tenant-scoped service, fictional seed, and PostgreSQL integration tests; CI runs them against a service container.
 
+## Authentication
+Branch `feature/authentication` (stacked on PR #6) adds Better Auth email/password sign-in with mandatory email verification, the sign-in page, and the protected organization route. Email delivery provider is not chosen yet; development logs the verification link to the server console.
+
 ## Immediate next steps
-1. Merge PR #5, then the tenant data foundation PR (owner approval required for merges).
-2. Integrate Better Auth (ADR-007) and protect `/[locale]/org/[orgSlug]` routes with `resolveTenantContext`.
+1. Merge PR #5, then PR #6, then the authentication PR (owner approval required for merges).
+2. Choose an EU email delivery provider for verification and password-reset mail (owner decision; may involve cost and a DPA).
 3. Organization onboarding and membership/role management; then employees, clients, sites, shifts, assignments, time entries.
 4. Configure Vercel Preview only when integration access is available, with isolated non-production data; production needs explicit approval.
 

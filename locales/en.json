@@ -11,5 +11,32 @@
   "foundationLabel": "Project status",
   "foundationStatus": "Technical foundation in progress",
   "languageLabel": "Language",
-  "languages": { "de": "Deutsch", "fa": "فارسی", "en": "English" }
+  "languages": {
+    "de": "Deutsch",
+    "fa": "فارسی",
+    "en": "English"
+  },
+  "auth": {
+    "signInTitle": "Sign in",
+    "signUpTitle": "Create account",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 12 characters",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "toSignUp": "No account yet? Sign up",
+    "toSignIn": "Already registered? Sign in",
+    "checkEmail": "Please confirm your email address using the link we sent.",
+    "notVerified": "Please confirm your email address first.",
+    "invalid": "Invalid email or password.",
+    "genericError": "That did not work. Please try again.",
+    "signOut": "Sign out"
+  },
+  "org": {
+    "noAccess": "You do not have access to this organization.",
+    "sites": "Service sites",
+    "noSites": "No service sites yet.",
+    "noSitePermission": "You are not allowed to view service sites."
+  }
 }

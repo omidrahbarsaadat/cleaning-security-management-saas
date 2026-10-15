@@ -4,7 +4,7 @@ A multi-tenant operations platform for cleaning and security service companies i
 
 ## Current status
 
-The foundation scaffold is in [PR #5](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/pull/5). The tenant data foundation (Prisma schema, composite tenant constraints, permission catalog, TenantContext resolver, and cross-tenant tests against PostgreSQL) follows on `feature/tenant-data-foundation`. Authentication (Better Auth, ADR-007), operational modules, and deployment are not implemented yet. Do not enter real employee or customer data.
+The foundation scaffold is in [PR #5](https://github.com/omidrahbarsaadat/cleaning-security-management-saas/pull/5). The tenant data foundation (Prisma schema, composite tenant constraints, permission catalog, TenantContext resolver, and cross-tenant tests against PostgreSQL) follows on `feature/tenant-data-foundation`. Email/password authentication with Better Auth (ADR-007) follows on `feature/authentication`. Operational modules and deployment are not implemented yet. Do not enter real employee or customer data.
 
 ## Stack
 
@@ -27,7 +27,7 @@ Open `http://localhost:3000`; the root route redirects to German. Available loca
 Local database (Docker, fictional credentials):
 
 ```sh
-cp .env.example .env
+cp .env.example .env   # then set BETTER_AUTH_SECRET to a random local value
 npm run db:up
 npm run db:migrate
 npm run db:seed
